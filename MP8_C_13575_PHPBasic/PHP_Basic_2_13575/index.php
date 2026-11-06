@@ -80,7 +80,7 @@
         $totalBayar = totalBayar($harga, $potongan){
             if($bayaran < $totalBayar){
                 return null;
-            }esle{
+            }else{
                 $bayaranKembali = $bayaran - $totalBayar;
                 return $bayaranKembali;
             }
@@ -93,27 +93,27 @@
             $bayaranKembali = 0;
         }
 
-        if(!empty($message2)){
-            echo "<p style='color:red;'>!! " . htmlspecialchars($message2) . " !!</p>"
-        }else{
-            echo "<h2>Informasi Pembayaran</h2>";
-            echo "<p><strong>Jumlah yang dibayar    : </strong> Rp" . htmlspecialchars($bayaran) . "</p>";
-            echo "<p><strong>jenis Pembayaran    : </strong> " . htmlspecialchars($infoJenis) . "</p>";
-        }
-
-        if($potongan == 0){
-            if(strtolower($jenis) == 'd'){
-                echo "<p>Pembayaran lunas.</p>";
+            if(!empty($message2)){
+                echo "<p style='color:red;'>!! " . htmlspecialchars($message2) . " !!</p>"
             }else{
-                echo "<p>Maaf jenis pembayaran tidak valid. Tidak ada potongan yang diberikan.</p>";
+                echo "<h2>Informasi Pembayaran</h2>";
+                echo "<p><strong>Jumlah yang dibayar    : </strong> Rp" . htmlspecialchars($bayaran) . "</p>";
+                echo "<p><strong>jenis Pembayaran    : </strong> " . htmlspecialchars($infoJenis) . "</p>";
+
+                if($potongan == 0){
+                if(strtolower($jenis) == 'd'){
+                    echo "<p>Pembayaran lunas.</p>";
+                }else{
+                    echo "<p>Maaf jenis pembayaran tidak valid. Tidak ada potongan yang diberikan.</p>";
+                }
+            }else{
+                echo "<p>Anda mendapatkan potongan " . (htmlspecialchars($potongan * 100)) . "% untuk pembayaran SPP Anda.</p>";
             }
-        }else{
-            echo "<p>Anda mendapatkan potongan " . (htmlspecialchars($potongan * 100)) . "% untuk pembayaran SPP Anda.</p>";
+            echo '<p style=""font-weight: bold; font-size: 18px;">Total Pembayaran  : Rp' . htmlspecialchars($totalBayar) . '</p>';
+            echo '<p style=""font-weight: bold; font-size: 18px;">Kembalian         : Rp' . htmlspecialchars($bayaranKembali) . '</p>';
         }
-
-        echo '<p style=""font-weight: bold; font-size: 18px;">Total Pembayaran  : Rp' . htmlspecialchars($totalBayar) . '</p>';
-        echo '<p style=""font-weight: bold; font-size: 18px;">Kembalian         : Rp' . htmlspecialchars($bayaranKembali) . '</p>';
-
+    }else{
+        echo "Silahkan isi formulir unutk melakukan pembayaran";
     }
 
 ?>
